@@ -29,11 +29,18 @@ Local, debug server can be started with `python app.py`; additionally,
 That said, the expected way of deploying the project is, as per requirements,
 Docker image.
 
+In any case the server will listen on http://0.0.0.0:8282
+
 ## Packaging
 
-`make build-image` will create an image labeled 'faces_assignment' based on included
-Dockerfile. The resulting image exposes port 8282, so upon running it, this one
-should be forwarded. An example command opening an interactive console would be:
+A pre-built image is available on the [release page](https://github.com/zencodism/faces_assignment/releases/tag/first_build).
+It can be loaded into local docker setup via `docker load faces_assignment.tar`.
+
+Alternatively, `make build-image` will create an image labeled 'faces_assignment'
+based on included Dockerfile. The resulting image exposes port 8282, so upon 
+running it, this one should be forwarded.
+
+An example command opening an interactive console would be:
 
 `docker run --rm -it -p 8282:8282 --name faces-container faces_assignment`
 
@@ -53,5 +60,4 @@ reasonable to achieve in a few hours of work. Specifically:
   kind of user management
   - no test coverage - a single unit test is there just to show where to plug
   more if needed
-  - no build system, pipeline definition, and no hosted pre-built image. My
-  apologies for this last point, since the build step takes a while due to dlib.
+  - no build system or pipeline definition
