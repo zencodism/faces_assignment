@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face detection playground</title>
+    <link rel="stylesheet" href="static/pico.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/socket.io.js"></script>
+    {% block extrahead %}
+    {% endblock %}
+</head>
+<body>
+  <div class="content">
+  {% with errors = get_flashed_messages(category_filter=["error"]) %}
+  {% if errors %}
+  <div class="error-messages">
+    <h4>We had some issues:</h4>
+    <ul>
+      {%- for msg in errors %}
+      <li>{{ msg }}</li>
+      {% endfor -%}
+    </ul>
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    <div class="success-messages">
+      {% for message in messages %}
+        <h4>{{ message }}</h4>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
+  {% block body %}{% endblock %}
+  </div>
+</body>
+</html>

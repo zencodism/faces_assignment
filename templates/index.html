@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="static/socket.io.js"></script>
-  <script type="text/javascript">
-      var socket = io.connect('http://' + document.domain + ':' + location.port);
-      socket.on('connect', function () {
-          console.log('Connected to the server');
-      });
-  </script>
-</head>
-<body>
-  Hello world
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block body %}
+  <h1>Welcome. Where do you want to go today?</h1>
+  <ul>
+    <li><a href="/image">Upload an image</a></li>
+    <li><a href="/faces">View processed images</a></li>
+{% endblock %}

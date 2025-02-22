@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block extrahead %}
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('connect', function () {
+        console.log('Connected to the server');
+    });
+
+    socket.on('upload', function (url) {
+        console.log('Upload ping received: ' + url);
+        var oImg = document.createElement("img");
+        oImg.setAttribute('src', url);
+        oImg.setAttribute('height', 'auto');
+        oImg.setAttribute('width', '300px');
+        document.getElementById('gallery').appendChild(oImg);
+    });
+</script>
+{% endblock %}
+{% block body %}
+
+  <h1>View processed images</h1>
+  <div id="gallery">
+  </div>
+{% endblock %}
